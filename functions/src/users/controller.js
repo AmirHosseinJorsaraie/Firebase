@@ -1,8 +1,12 @@
-import * as admin from "firebase-admin";
+import admin from "firebase-admin";
+
+
+//db connection
+
 
 export async function create(req, res) {
     try {
-        const { displayName, password, email, role } = req.body
+        const { displayName, password, email, role, lastName } = req.body
 
         if (!displayName, !password, !email, !role) {
             return res.status(400).send({ message: 'Mising Fields.' })
@@ -24,6 +28,20 @@ export async function create(req, res) {
 
 export async function all(req, res) {
     try {
+        const db = admin.firestore()
+
+        //get collection ref
+        db.collection('User')
+            .get()
+            .then((snapshot) => {
+                let users = []
+                snapshot.docs.forEach((data) => {
+                    users.push({ ...data.data() , id: data.id })
+                })
+                console.log(users)
+            })
+
+
         const listUsers = await admin.auth().listUsers()
         const users = listUsers.users.map(mapUser)
         return res.status(200).send({ users })
@@ -37,10 +55,12 @@ export async function all(req, res) {
 function mapUser(user) {
     const customClaims = user.customClaims || { role: '' }
     const role = customClaims.role
+    console.log(user.metadata)
     return {
         uid: user.uid,
         email: user.email,
         displayName: user.displayName,
+        lastName: user.lastName,
         role,
         lastSignInTime: user.metadata.lastSignInTime,
         creationTime: user.metadata.creationTime
@@ -80,7 +100,7 @@ export async function patch(req, res) {
 
 export async function remove(req, res) {
     try {
-        const {id} = req.params
+        const { id } = req.params
         await admin.auth().deleteUser(id)
         return res.status(204).send({})
     }

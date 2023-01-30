@@ -10,7 +10,7 @@ import { routeConfig } from './users/routes-config.js';
 //   response.send("Hello from Firebase!");
 // });
 
-admin.initializeApp()
+admin.initializeApp(functions.config().firebase)
 
 const app = express()
 app.use(bodyparser.json())

@@ -4,12 +4,11 @@ import { isAuthorized } from './auth/authorized.js';
 
 export function routeConfig(app) {
     //create user
-    app.post('/users', isAuthenticated, isAuthorized({ hasRole: ['admin', 'manager'] }), create)
+    app.post('/users', create)
 
     // lists all users
     app.get('/users', [
-        isAuthenticated,
-        isAuthorized({ hasRole: ['admin', 'manager'] }),
+
         all
     ]);
     // get :id user
