@@ -1,4 +1,4 @@
-import { create, all, get, patch, remove } from "./controller.js";
+import { create, all, get, patch, remove , signIn} from "./controller.js";
 import { isAuthenticated } from './middlewares/authenticated.js';
 import { isAuthorized } from './middlewares/authorized.js';
 
@@ -11,6 +11,10 @@ export function routeConfig(app) {
 
         all
     ]);
+
+    // signIn user
+    app.post('/signin', signIn);
+
     // get :id user
     app.get('/users/:id', [
         isAuthenticated,

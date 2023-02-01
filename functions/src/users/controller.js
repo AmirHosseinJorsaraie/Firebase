@@ -1,8 +1,21 @@
 import admin from "firebase-admin";
+import { getAuth, connectAuthEmulator , signInWithEmailAndPassword } from "firebase/auth";
 
 
 //db connection
 
+export async function signIn(req, res) {
+    try {
+        
+        const { email, password } = req.body
+        const auth = getAuth()
+        const response = await signInWithEmailAndPassword(auth,email,password)
+        return res.status(201).send(response)
+    }
+    catch (err) {
+        return handleError(res, err)
+    }
+}
 
 export async function create(req, res) {
     try {
@@ -36,7 +49,7 @@ export async function all(req, res) {
             .then((snapshot) => {
                 let users = []
                 snapshot.docs.forEach((data) => {
-                    users.push({ ...data.data() , id: data.id })
+                    users.push({ ...data.data(), id: data.id })
                 })
                 console.log(users)
             })
