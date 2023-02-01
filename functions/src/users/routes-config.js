@@ -1,10 +1,10 @@
 import { create, all, get, patch, remove } from "./controller.js";
-import { isAuthenticated } from './auth/authenticated.js';
-import { isAuthorized } from './auth/authorized.js';
+import { isAuthenticated } from './middlewares/authenticated.js';
+import { isAuthorized } from './middlewares/authorized.js';
 
 export function routeConfig(app) {
     //create user
-    app.post('/users', create)
+    app.post('/signup', create)
 
     // lists all users
     app.get('/users', [
