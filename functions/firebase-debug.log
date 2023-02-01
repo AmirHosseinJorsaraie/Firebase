@@ -4618,3 +4618,47 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 
 [error] !!  functions: Failed to load function definition from source: FirebaseError: Failed to load function definition from source: Failed to generate manifest from function source: Error: Service account object must contain a string "private_key" property. {"metadata":{"emulator":{"name":"functions"},"message":"Failed to load function definition from source: FirebaseError: Failed to load function definition from source: Failed to generate manifest from function source: Error: Service account object must contain a string \"private_key\" property."}}
 [debug] [2023-02-01T18:27:00.691Z] File C:\Users\Asus\Documents\GitHub\Firebase\functions\configuration.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File C:\\Users\\Asus\\Documents\\GitHub\\Firebase\\functions\\configuration.js changed, reloading triggers"}}
+[debug] [2023-02-01T18:27:01.703Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2023-02-01T18:27:04.065Z] > [functions] package.json contents: {
+  "type": "module",
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "src/index.js",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2023-02-01T18:27:04.065Z] Building nodejs source
+[debug] [2023-02-01T18:27:04.066Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-02-01T18:27:04.544Z] Serving at port 9005
+
+[debug] [2023-02-01T18:27:04.632Z] Got response from /__/functions.yaml Failed to generate manifest from function source: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'firebase' imported from C:\Users\Asus\Documents\GitHub\Firebase\functions\src\users\controller.js
+[debug] [2023-02-01T18:27:04.633Z] Failed to parse functions.yamlincomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line 1, column 79:
+     ... ce: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'firebase' ... 
+                                         ^ {"name":"YAMLException","reason":"incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line","mark":{"name":null,"buffer":"Failed to generate manifest from function source: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'firebase' imported from C:\\Users\\Asus\\Documents\\GitHub\\Firebase\\functions\\src\\users\\controller.js\n\u0000","position":78,"line":0,"column":78},"message":"incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line 1, column 79:\n     ... ce: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'firebase' ... \n                                         ^"}
+[debug] [2023-02-01T18:27:04.638Z] shutdown requested via /__/quitquitquit
+
+[error] !!  functions: Failed to load function definition from source: FirebaseError: Failed to load function definition from source: Failed to generate manifest from function source: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'firebase' imported from C:\Users\Asus\Documents\GitHub\Firebase\functions\src\users\controller.js {"metadata":{"emulator":{"name":"functions"},"message":"Failed to load function definition from source: FirebaseError: Failed to load function definition from source: Failed to generate manifest from function source: Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'firebase' imported from C:\\Users\\Asus\\Documents\\GitHub\\Firebase\\functions\\src\\users\\controller.js"}}
